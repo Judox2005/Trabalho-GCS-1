@@ -7,7 +7,6 @@ public class App {
         this.usuario = null;
         this.usuarios = new ArrayList();
 
-        //
     }
 
     public void executar(){

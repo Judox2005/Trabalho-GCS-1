@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 public class Registro {
+    private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
     public void registrarNovoPedido(Usuario usuario){
 
     }
