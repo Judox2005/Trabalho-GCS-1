@@ -6,6 +6,10 @@
 </br>　- Fernando Jung Lau
 </br>　- Piedro Rockembach Nunes
 
+# Commits
+- padrão:
+    - feature/[nome da feature]
+    - hotfix/[o que está sendo arrumado]
 # Funcionalidades gerais a serem implementadas
 - [ Registro ] método para adicionar pedido na lista de pedidos: adicionarPedido(pedido: Pedido): void;
 - [ Pedido ] Método para adicionar itens no pedido: adicionarItem(item: Item): void;
