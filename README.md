@@ -18,7 +18,8 @@
   
       - linux/mac: `cd Documents/Puc/GCS`
 <br>
-- Use o comando `git clone https://github.com/Judox2005/Trabalho-GCS-1.git` para clonar o repositório no diretório atual
+
+- Use o comando `git clone https://github.com/Judox2005/Trabalho-GCS-1.git ` para clonar o repositório no diretório atual
 
 - Entre na pasta do repositório que você acabou de clonar:
   - `cd Trabalho-GCS-1`   
