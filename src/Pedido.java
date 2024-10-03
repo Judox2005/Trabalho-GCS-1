@@ -15,8 +15,14 @@ public class Pedido{
       this.dataInicio = dataInicio;
       this.dataConclusao = null;
       this.valorTotal = 0;
+      this.usuario = usuario;
       Pedido.idCounter++;
       this.id = Pedido.idCounter;
       this.listaItens = new ArrayList<Item>();
   }
+
+  public String getDataInicio() { return this.dataInicio; } 
+
+  //[TODO] Implementar toString
+  public String toString() { return "\nid: " + this.id + "\nDono do pedido: " + this.usuario.getNome() + "\nstatus: " + this.status;}
 }
