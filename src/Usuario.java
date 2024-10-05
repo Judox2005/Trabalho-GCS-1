@@ -11,7 +11,16 @@ public class Usuario {
         this.departamento = departamento;
         
     }
-    
-    public int getId() { return this.id; }
-    public String getNome() { return this.nome; }
+    public int getId(){
+        return id;
+    }
+    public String getNome(){
+        return nome;
+    }
+    public String getTipo(){
+        return tipo;
+    }
+    public Departamento getDepartamento(){
+        return departamento;  
+    }
 }
