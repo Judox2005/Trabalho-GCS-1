@@ -10,4 +10,10 @@ public class Departamento {
         this.nome = nome;
         this.membrosDepartamento = new ArrayList<>();
     }
+    public String getNome(){
+        return nome;
+    }
+    public double getvalorMaximoPedido(){
+        return valorMaximoPedido;
+    }
 }
