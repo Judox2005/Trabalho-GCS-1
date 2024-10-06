@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.*;
+import java.time.LocalDate;
 public class Registro {
     private ArrayList<Pedido> pedidos;
     public Registro(){
@@ -18,6 +19,7 @@ public class Registro {
     }
 
     //[ Fernando ] adicionei o parametro de usuario, oq nao estava no diagrama
+    // [TODO] tratar excecoes
     public boolean excluirPedido(Usuario usuario) {
         Scanner in = new Scanner(System.in);
         int aux = 0;
@@ -29,6 +31,7 @@ public class Registro {
         }
         if(aux == 0) {
             System.out.println("Voce nao tem pedidos");
+            in.close();
             return false;
         }
         System.out.println("Digite o id do pedido a ser excluido:");
@@ -37,11 +40,13 @@ public class Registro {
             if(p.getId() == id && p.getUsuario().equals(usuario)) {
                 pedidos.remove(p);
                 System.out.println("Pedido excluido com sucesso!");
+                in.close();
                 return true;
             }
         }
         System.out.println("Voce nao possui um pedido com este id!");
         System.out.println("Erro ao excluir pedido!");
+        in.close();
         return false;
     }
 
@@ -103,9 +108,37 @@ public class Registro {
     public void verDetalhesDoPedidoComMaiorValor(){
 
     }
-    public void verNumeroDePedidoNosUltimos30Dias(){
 
+    // [TODO] tratar excecoes
+    public void verNumeroDePedidoNosUltimos30Dias(){
+        Scanner in = new Scanner(System.in);
+        int numPedidos = 0;
+        double valorMedio = 0;
+
+        System.out.println("Digite a data atual no formato DD/MM/AAAA:");
+        String dataAtual = in.nextLine();
+        int diaA = Integer.parseInt(String.valueOf(dataAtual.charAt(0)+dataAtual.charAt(1)));
+        int mesA = Integer.parseInt(String.valueOf(dataAtual.charAt(3)+dataAtual.charAt(4)));
+        int anoA = Integer.parseInt(String.valueOf(dataAtual.charAt(6)+dataAtual.charAt(7)+dataAtual.charAt(8)+dataAtual.charAt(9)));
+        LocalDate dAtual = LocalDate.of(anoA, mesA, diaA);
+        LocalDate InicioIntervalo = dAtual.minusDays(30);
+
+        for(Pedido p : pedidos) {
+            String dataPedido = p.getDataInicio();
+            int diaP = Integer.parseInt(String.valueOf(dataPedido.charAt(0)+dataPedido.charAt(1)));
+            int mesP = Integer.parseInt(String.valueOf(dataPedido.charAt(3)+dataPedido.charAt(4)));
+            int anoP = Integer.parseInt(String.valueOf(dataPedido.charAt(6)+dataPedido.charAt(7)+dataPedido.charAt(8)+dataPedido.charAt(9)));
+            LocalDate dPedido = LocalDate.of(anoP, mesP, diaP);
+            if(dPedido.isAfter(InicioIntervalo) && dPedido.isBefore(dAtual.plusDays(1))) {
+                numPedidos++;
+                valorMedio = (valorMedio + p.getValorTotal())/numPedidos;
+            }
+        }
+        System.out.println("Quantidade de pedidos: " + numPedidos);
+        System.out.println("Valor medio: " + valorMedio);
+        in.close();
     }
+    
     public void verNumeroPedidosPorCategoria(){
     }
 }

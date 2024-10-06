@@ -27,6 +27,8 @@ public class Pedido{
 
   public int getId() { return this.id; }
 
+  public double getValorTotal() { return this.valorTotal; }
+
   //[TODO] Implementar toString
   public String toString() { return "\nid: " + this.id + "\nDono do pedido: " + this.usuario.getNome() + "\nstatus: " + this.status;}
 }
