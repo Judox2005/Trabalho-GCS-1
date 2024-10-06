@@ -283,4 +283,23 @@ public class Registro {
         System.out.println("reprovado: " + vtReprovado);
         in.close();
     }
+    public void verPedidosPelaDescricao(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Digite a descrição do item que deseja: ");
+        String descricao = in.nextLine();
+        int aux = 0;
+        in.close();
+        for(Pedido p : pedidos) {
+            for(Item i : p.getListaItens()) {
+                if(i.getDescricao().equals(descricao)) {
+                    System.out.println(p.toString());
+                    aux++;
+                }
+            }
+        }
+        if (aux == 0) {
+            System.out.println("Nenhum pedido encontrado com a descrição informada.");
+        }
+        return;
+    }
 }

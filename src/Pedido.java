@@ -20,10 +20,14 @@ public class Pedido{
       this.id = Pedido.idCounter;
       this.listaItens = new ArrayList<Item>();
   }
+  
   public void adicionarItem(Item item){
     this.listaItens.add(item);
     this.valorTotal += item.getValor() * item.getQuantidade();
   }
+
+  public ArrayList<Item> getListaItens() { return this.listaItens; }
+
   public String getDataInicio() { return this.dataInicio; } 
 
   public String getDataConclusao() { return this.dataConclusao; }
