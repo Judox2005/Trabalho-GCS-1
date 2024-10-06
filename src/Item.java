@@ -8,7 +8,12 @@ public class Item {
         this.valor = valor;
         this.quantidade = quantidade;
     }
-
+    public double getValor() {
+        return valor;
+    }
+    public int getQuantidade() {
+        return quantidade;
+    }
     public String toString() {
         return "Descricao: " + descricao + "\n" + "Valor: " + valor + "\n" + "Quantidade: " + quantidade;
     }

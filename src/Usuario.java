@@ -17,7 +17,7 @@ public class Usuario {
     public String getNome(){
         return nome;
     }
-    public String getTipo(){
+    public int getTipo(){
         return tipo;
     }
     public Departamento getDepartamento(){

@@ -5,7 +5,7 @@ public class Departamento {
     private String nome;
     private ArrayList<Usuario> membrosDepartamento;
 
-    public Departamento(double valorMaximoPedido, String nome) {
+    public Departamento(String nome, double valorMaximoPedido) {
         this.valorMaximoPedido = valorMaximoPedido;
         this.nome = nome;
         this.membrosDepartamento = new ArrayList<>();
