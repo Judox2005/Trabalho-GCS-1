@@ -8,14 +8,56 @@ public class Registro {
         this.pedidos = new ArrayList<>();
 
         //[ Piedro ] adicionei alguns pedidos para testar os métodos, se quiser pode remover
-        pedidos.add(new Pedido("18/10/2003", new Usuario(1,"João", 1, new Departamento(100, "TI"))));
-        pedidos.add(new Pedido("01/01/2021", new Usuario(1,"maira", 1, new Departamento(100, "TI"))));
-        pedidos.add(new Pedido("05/05/2021", new Usuario(1,"thiago", 1, new Departamento(100, "TI"))));
-        pedidos.add(new Pedido("12/04/2024", new Usuario(1,"larissa", 1, new Departamento(100, "TI"))));
+        pedidos.add(new Pedido("18/10/2003", new Usuario(1,"João", 1, new Departamento("TI", 100))));
+        pedidos.add(new Pedido("01/01/2021", new Usuario(1,"maira", 1, new Departamento("TI", 100))));
+        pedidos.add(new Pedido("05/05/2021", new Usuario(1,"thiago", 1, new Departamento( "TI", 100))));
+        pedidos.add(new Pedido("12/04/2024", new Usuario(1,"larissa", 1, new Departamento("TI", 100))));
     }
 
-    public void registrarNovoPedido(Usuario usuario){
+    private void registraNovoPedido(Usuario usuario) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Novo pedido para " + usuario.getNome());
+        System.out.println("Departamento: " + usuario.getDepartamento().getNome());
+        System.out.println("Limite de cada Departamento: " + usuario.getDepartamento().getvalorMaximoPedido());
+        System.out.println("Informe a data atual no formato DD/MM/AAAA: ");
+        String data = scanner.nextLine();
+        Pedido novoPedido = new Pedido(data, usuario);
+        while(true){
+            System.out.println("Deseja adicionar um novo item? Sim ou não?");
+            String opcao = scanner.nextLine();
 
+        if(opcao.equalsIgnoreCase("Sim")){
+            System.out.println("Descrição do item: ");
+            String descricao = scanner.nextLine();
+            System.out.println("Valor unitário: ");
+            double valorUnitario = scanner.nextDouble();
+            System.out.println("Quantidade: ");
+            int quantidade = scanner.nextInt();
+
+            Item item = new Item(descricao, valorUnitario, quantidade);
+            novoPedido.adicionarItem(item);
+            System.out.println("Item adicionado com sucesso");
+            System.out.println("Valor total do pedido até o momento: " + novoPedido.getValorTotal());
+            } else{
+                break;
+            } 
+        }
+
+        double limiteDepartamento = usuario.getDepartamento().getvalorMaximoPedido();
+        if(novoPedido.getValorTotal() > limiteDepartamento){
+            System.out.println("O valor do pedido ultrapassa o limite permitido pelo Departamento: " + limiteDepartamento);
+            System.out.println("Pedido não registrado!");
+        }else{
+            System.out.println("Deseja confirmar o pedido? Sim ou não?");
+            String confirmacao = scanner.nextLine();
+        
+            if(confirmacao.equalsIgnoreCase("Sim")){
+                pedidos.add(novoPedido);
+                System.out.println("Pedido registrado com sucesso!");
+            }else{
+                System.out.println("Pedido cancelado");
+            }
+        }
     }
 
     //[ Fernando ] adicionei o parametro de usuario, oq nao estava no diagrama
