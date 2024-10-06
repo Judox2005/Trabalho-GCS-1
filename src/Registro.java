@@ -103,7 +103,25 @@ public class Registro {
 
     }
     public void verNumeroTotalDePedidos(){
-
+        int total = 0, aberto = 0, aprovado = 0, reprovado = 0;
+        for(Pedido p : pedidos) {
+            total++;
+            if(p.getStatus().equalsIgnoreCase("aberto")) {
+                aberto++;
+            }
+            if(p.getStatus().equalsIgnoreCase("aprovado")) {
+                aprovado++;
+            }
+            if(p.getStatus().equalsIgnoreCase("reprovado")) {
+                reprovado++;
+            }
+        }
+        System.out.format("+-----------+-----+-----+");
+        System.out.format("| categoria | qtd |  %  |");
+        System.out.format("+-----------+-----+-----+");
+        System.out.format("| aberto    | %3d | %3d |", aberto, (total / 100) * aberto);
+        System.out.format("| aprovado  | %3d | %3d |", aprovado, (total / 100) * aprovado);
+        System.out.format("| reprovado | %3d | %3d |", reprovado, (total / 100) * reprovado);
     }
     public void verDetalhesDoPedidoComMaiorValor(){
 
