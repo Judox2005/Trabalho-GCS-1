@@ -107,8 +107,20 @@ public class Registro {
         }
         return null;
     }
-    public String pedidosDeUmFuncionario(){
-        
+    public void pedidosDeUmFuncionario(){
+        Scanner in = new Scanner(System.in);
+        int id ;
+        System.out.println("Digite o Id do funcionário para consultar um possível pedido");
+        id = in.nextInt();
+        Pedido aux2 = null;
+        for (int i = 0; i<pedidos.size(); i++){
+            if (pedidos.get(i).getId() == id){
+                aux2 = pedidos.get(i);
+             System.out.println( aux2.toString() );}
+            else 
+            System.out.println("Não existem pedidos feitos por esse usuário" );
+        }
+
     }
     public void buscaPedidosPeloItem(){
     
