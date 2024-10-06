@@ -181,7 +181,7 @@ public class Registro {
                 else if (opcao == 2){
                     aux3.setStatus("reprovado");
                 }
-                System.out.println(pedidos.getStatus + " " + "Status atualizado com sucesso!" );
+                System.out.println(aux3.getStatus() + " " + "Status atualizado com sucesso!" );
                 return ;
             }
         }
