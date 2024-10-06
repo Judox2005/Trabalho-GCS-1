@@ -65,6 +65,17 @@ public class Registro {
         }
         in.close();
     }
+    public String detalhesDoPedidoDeMaiorValor(){
+        Pedido aux1 = null;
+        if (Pedido.getStatus.equals("aberto")){
+            for (int i = 0; i>pedidos.size(); i++){
+                if(pedidos.get(i).getValorTotal() > aux1.getValorTotal())
+                aux1 = pedidos.get(i);
+            } 
+            System.out.println(aux1.getDataInicio() + "," + aux1.getId() + "," + aux1.getValorTotal() + "," + aux1.getUsuario() );
+        }
+        return null;
+    }
     public void buscaPedidosPeloItem(){
     
     }
