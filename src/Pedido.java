@@ -36,6 +36,8 @@ public class Pedido{
 
   public String getStatus() { return this.status; }
 
+  public void setStatus(String status) { this.status = status; }
+
   //[TODO] Implementar toString
   public String toString() { return "\nid: " + this.id + "\nDono do pedido: " + this.usuario.getNome() + "\nstatus: " + this.status;}
 }

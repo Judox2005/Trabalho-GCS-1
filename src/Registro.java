@@ -156,7 +156,7 @@ public class Registro {
         id = in.nextInt();
         Pedido aux2 = null;
         for (int i = 0; i<pedidos.size(); i++){
-            if (pedidos.get(i).getId() == id){
+            if (pedidos.get(i).getUsuario().getId() == id){
                 aux2 = pedidos.get(i);
              System.out.println( aux2.toString() );}
             else 
@@ -169,8 +169,23 @@ public class Registro {
         int opcao ;
         System.out.println("Digite o Id do pedido para aprova-lo ou reprova-lo");
         id = in.nextInt();
-        System.out.println( "digite 1 para aprova-lo ou digite 2 para reprova-lo");
-        
+        Pedido aux3 = null;
+        for (int i = 0; i<pedidos.size(); i++){
+            if (pedidos.get(i).getId() == id && pedidos.get(i).getStatus().equals("aberto")){
+                aux3 = pedidos.get(i);
+                System.out.println( "digite 1 para aprova-lo ou digite 2 para reprova-lo");
+                opcao = in.nextInt();
+                if (opcao == 1){
+                    aux3.setStatus("aprovado");
+                }
+                else if (opcao == 2){
+                    aux3.setStatus("reprovado");
+                }
+                System.out.println(pedidos.getStatus + " " + "Status atualizado com sucesso!" );
+                return ;
+            }
+        }
+        System.out.println("erro, retornando ao menu...");
     }
     public void buscaPedidosPeloItem(){
     
