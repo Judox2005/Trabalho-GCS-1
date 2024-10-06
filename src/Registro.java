@@ -140,5 +140,38 @@ public class Registro {
     }
     
     public void verNumeroPedidosPorCategoria(){
+        Scanner in = new Scanner(System.in);
+        double vtAberto = 0, vtAprovado = 0, vtReprovado = 0;
+
+        System.out.println("Digite a data atual no formato DD/MM/AAAA:");
+        String dataAtual = in.nextLine();
+        int diaA = Integer.parseInt(String.valueOf(dataAtual.charAt(0)+dataAtual.charAt(1)));
+        int mesA = Integer.parseInt(String.valueOf(dataAtual.charAt(3)+dataAtual.charAt(4)));
+        int anoA = Integer.parseInt(String.valueOf(dataAtual.charAt(6)+dataAtual.charAt(7)+dataAtual.charAt(8)+dataAtual.charAt(9)));
+        LocalDate dAtual = LocalDate.of(anoA, mesA, diaA);
+        LocalDate InicioIntervalo = dAtual.minusDays(30);
+
+        for(Pedido p : pedidos) {
+            String dataPedido = p.getDataInicio();
+            int diaP = Integer.parseInt(String.valueOf(dataPedido.charAt(0)+dataPedido.charAt(1)));
+            int mesP = Integer.parseInt(String.valueOf(dataPedido.charAt(3)+dataPedido.charAt(4)));
+            int anoP = Integer.parseInt(String.valueOf(dataPedido.charAt(6)+dataPedido.charAt(7)+dataPedido.charAt(8)+dataPedido.charAt(9)));
+            LocalDate dPedido = LocalDate.of(anoP, mesP, diaP);
+            if(dPedido.isAfter(InicioIntervalo) && dPedido.isBefore(dAtual.plusDays(1))) {
+                if(p.getStatus().equalsIgnoreCase("aberto")) {
+                    vtAberto += p.getValorTotal();
+                }
+                if(p.getStatus().equalsIgnoreCase("aprovado")) {
+                    vtAprovado += p.getValorTotal();
+                }
+                if(p.getStatus().equalsIgnoreCase("reprovado")) {
+                    vtReprovado += p.getValorTotal();
+                }
+            }
+        }
+        System.out.println("aberto: " + vtAberto);
+        System.out.println("aprovado: " + vtAprovado);
+        System.out.println("reprovado: " + vtReprovado);
+        in.close();
     }
 }

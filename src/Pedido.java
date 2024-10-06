@@ -29,6 +29,8 @@ public class Pedido{
 
   public double getValorTotal() { return this.valorTotal; }
 
+  public String getStatus() { return this.status; }
+
   //[TODO] Implementar toString
   public String toString() { return "\nid: " + this.id + "\nDono do pedido: " + this.usuario.getNome() + "\nstatus: " + this.status;}
 }
