@@ -14,7 +14,7 @@ public class Registro {
         pedidos.add(new Pedido("12/04/2024", new Usuario(1,"larissa", 1, new Departamento("TI", 100))));
     }
 
-    private void registraNovoPedido(Usuario usuario) {
+    public void registraNovoPedido(Usuario usuario) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Novo pedido para " + usuario.getNome());
         System.out.println("Departamento: " + usuario.getDepartamento().getNome());
@@ -40,7 +40,8 @@ public class Registro {
             System.out.println("Valor total do pedido até o momento: " + novoPedido.getValorTotal());
             } else{
                 break;
-            } 
+            }
+            scanner.close();
         }
 
         double limiteDepartamento = usuario.getDepartamento().getvalorMaximoPedido();
