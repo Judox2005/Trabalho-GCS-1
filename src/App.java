@@ -6,13 +6,10 @@ public class App {
     private Registro registro;
     private ArrayList<Usuario> usuarios;
     private ArrayList<Departamento> departamentos = new ArrayList<>();
-    private Scanner in;
     public App(){
         this.usuario = null;
         this.usuarios = new ArrayList<>();
         this.registro = new Registro();
-        this.in = new Scanner(System.in);
-
     }
 
     public void executar(){
@@ -27,14 +24,17 @@ public class App {
     }
 
     public void login() {
+        Scanner in = new Scanner(System.in);
         while(true) {
             System.out.println("LOGIN DE USUARIO:");
             System.out.println("Informe seu id: ");
             int id = in.nextInt();
+            in.nextLine();
             for(Usuario u : usuarios) {
             if(u.getId() == id) {
                 this.usuario = u;
-                break;
+                in.close();
+                return;
             }
         }
         System.out.println("Nao ha usuario com este id, digite novamente!");
@@ -44,6 +44,7 @@ public class App {
     public void menu(){
         int opc = 0;
         while (opc != 4) {
+            Scanner in = new Scanner(System.in);
             System.out.println("MENU:");
             System.out.println("Selecione uma opcao:");
             System.out.println("1) Registrar novo pedido");
@@ -52,6 +53,8 @@ public class App {
             System.out.println("4) Sair");
 
             opc = in.nextInt();
+            in.nextLine();
+            in.close();
 
             switch (opc) {
                 case 1:
@@ -78,6 +81,7 @@ public class App {
     public void menuAdm(){
         int opc = 0;
         while (opc != 12) {
+            Scanner in = new Scanner(System.in);
             System.out.println("MENU DO ADMINISTRADOR:");
             System.out.println("Selecione uma opcao:");
             System.out.println("1) Registrar novo pedido");
@@ -94,6 +98,8 @@ public class App {
             System.out.println("12) Sair");
 
             opc = in.nextInt();
+            in.nextLine();
+            in.close();
 
             switch (opc) {
                 case 1:
@@ -147,7 +153,6 @@ public class App {
                     break;
             }
         }
-
     }
     private void iniciarDepartamento(){
         departamentos.add(new Departamento("Financeiro",1000.0));

@@ -26,22 +26,22 @@ public class Registro {
             System.out.println("Deseja adicionar um novo item? Sim ou não?");
             String opcao = scanner.nextLine();
 
-        if(opcao.equalsIgnoreCase("Sim")){
-            System.out.println("Descrição do item: ");
-            String descricao = scanner.nextLine();
-            System.out.println("Valor unitário: ");
-            double valorUnitario = scanner.nextDouble();
-            System.out.println("Quantidade: ");
-            int quantidade = scanner.nextInt();
+            if(opcao.equalsIgnoreCase("Sim")){
+                System.out.println("Descrição do item: ");
+                String descricao = scanner.nextLine();
+                System.out.println("Valor unitário: ");
+                double valorUnitario = scanner.nextDouble();
+                System.out.println("Quantidade: ");
+                int quantidade = scanner.nextInt();
+                scanner.nextLine();
 
-            Item item = new Item(descricao, valorUnitario, quantidade);
-            novoPedido.adicionarItem(item);
-            System.out.println("Item adicionado com sucesso");
-            System.out.println("Valor total do pedido até o momento: " + novoPedido.getValorTotal());
+                Item item = new Item(descricao, valorUnitario, quantidade);
+                novoPedido.adicionarItem(item);
+                System.out.println("Item adicionado com sucesso");
+                System.out.println("Valor total do pedido até o momento: " + novoPedido.getValorTotal());
             } else{
                 break;
             }
-            scanner.close();
         }
 
         double limiteDepartamento = usuario.getDepartamento().getvalorMaximoPedido();
@@ -59,6 +59,7 @@ public class Registro {
                 System.out.println("Pedido cancelado");
             }
         }
+        scanner.close();
     }
 
     //[ Fernando ] adicionei o parametro de usuario, oq nao estava no diagrama
