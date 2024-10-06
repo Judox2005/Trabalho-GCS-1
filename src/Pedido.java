@@ -23,6 +23,10 @@ public class Pedido{
 
   public String getDataInicio() { return this.dataInicio; } 
 
+  public Usuario getUsuario() { return this.usuario; }
+
+  public int getId() { return this.id; }
+
   //[TODO] Implementar toString
   public String toString() { return "\nid: " + this.id + "\nDono do pedido: " + this.usuario.getNome() + "\nstatus: " + this.status;}
 }

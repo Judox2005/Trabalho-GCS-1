@@ -16,9 +16,35 @@ public class Registro {
     public void registrarNovoPedido(Usuario usuario){
 
     }
-    public boolean excluirPedido() {
+
+    //[ Fernando ] adicionei o parametro de usuario, oq nao estava no diagrama
+    public boolean excluirPedido(Usuario usuario) {
+        Scanner in = new Scanner(System.in);
+        int aux = 0;
+        for(Pedido p : pedidos) {
+            if(p.getUsuario().equals(usuario)) {
+                System.out.println(p.toString());
+                aux++;
+            }
+        }
+        if(aux == 0) {
+            System.out.println("Voce nao tem pedidos");
+            return false;
+        }
+        System.out.println("Digite o id do pedido a ser excluido:");
+        int id = in.nextInt();
+        for(Pedido p : pedidos) {
+            if(p.getId() == id && p.getUsuario().equals(usuario)) {
+                pedidos.remove(p);
+                System.out.println("Pedido excluido com sucesso!");
+                return true;
+            }
+        }
+        System.out.println("Voce nao possui um pedido com este id!");
+        System.out.println("Erro ao excluir pedido!");
         return false;
     }
+
     public boolean editarStatusPeloId(){
         return false;
     } 
