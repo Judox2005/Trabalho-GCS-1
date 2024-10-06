@@ -93,6 +93,8 @@ public class App {
             System.out.println("11) Detalhes do pedido de aquisição de maior valor ainda aberto");
             System.out.println("12) Sair");
 
+            opc = in.nextInt();
+
             switch (opc) {
                 case 1:
                     System.out.println("Registrar novo pedido:");
