@@ -20,7 +20,7 @@ public class Pedido{
       this.id = Pedido.idCounter;
       this.listaItens = new ArrayList<Item>();
   }
-
+  public ArrayList<Item> getListaItens() { return this.listaItens; }
   public String getDataInicio() { return this.dataInicio; } 
 
   public Usuario getUsuario() { return this.usuario; }
