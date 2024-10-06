@@ -100,8 +100,8 @@ public class Registro {
         Pedido aux1 = null;
         for (int i = 0; i<pedidos.size(); i++){
           if (pedidos.get(i).getStatus().equals("aberto")){
-                if(pedidos.get(a).getValorTotal() > aux1.getValorTotal())
-                aux1 = pedidos.get(a);
+                if(pedidos.get(i).getValorTotal() > aux1.getValorTotal())
+                aux1 = pedidos.get(i);
             } 
         }
             System.out.println(aux1.toString());
