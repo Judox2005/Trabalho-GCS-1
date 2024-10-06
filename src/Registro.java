@@ -107,6 +107,9 @@ public class Registro {
         }
         return null;
     }
+    public String pedidosDeUmFuncionario(){
+        
+    }
     public void buscaPedidosPeloItem(){
     
     }
