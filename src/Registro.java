@@ -96,16 +96,15 @@ public class Registro {
         }
         in.close();
     }
-    public String detalhesDoPedidoDeMaiorValor(){
+    public void detalhesDoPedidoDeMaiorValor(){
         Pedido aux1 = null;
-        if (Pedido.getStatus.equals("aberto")){
-            for (int i = 0; i>pedidos.size(); i++){
-                if(pedidos.get(i).getValorTotal() > aux1.getValorTotal())
-                aux1 = pedidos.get(i);
+        for (int i = 0; i<pedidos.size(); i++){
+          if (pedidos.get(i).getStatus().equals("aberto")){
+                if(pedidos.get(a).getValorTotal() > aux1.getValorTotal())
+                aux1 = pedidos.get(a);
             } 
-            System.out.println(aux1.getDataInicio() + "," + aux1.getId() + "," + aux1.getValorTotal() + "," + aux1.getUsuario() );
         }
-        return null;
+            System.out.println(aux1.toString());
     }
     public void pedidosDeUmFuncionario(){
         Scanner in = new Scanner(System.in);
@@ -120,7 +119,15 @@ public class Registro {
             else 
             System.out.println("Não existem pedidos feitos por esse usuário" );
         }
-
+    }
+    public void editarStatus(){
+        Scanner in = new Scanner(System.in);
+        int id ;
+        int opcao ;
+        System.out.println("Digite o Id do pedido para aprova-lo ou reprova-lo");
+        id = in.nextInt();
+        System.out.println( "digite 1 para aprova-lo ou digite 2 para reprova-lo");
+        
     }
     public void buscaPedidosPeloItem(){
     
