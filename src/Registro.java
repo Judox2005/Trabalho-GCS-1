@@ -15,25 +15,24 @@ public class Registro {
     }
 
     public void registraNovoPedido(Usuario usuario) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Novo pedido para " + usuario.getNome());
         System.out.println("Departamento: " + usuario.getDepartamento().getNome());
         System.out.println("Limite de cada Departamento: " + usuario.getDepartamento().getvalorMaximoPedido());
         System.out.println("Informe a data atual no formato DD/MM/AAAA: ");
-        String data = scanner.nextLine();
-        Pedido novoPedido = new Pedido(data, usuario);
+        String dataInicio = App.in.nextLine();
+        Pedido novoPedido = new Pedido(dataInicio, usuario);
         while(true){
             System.out.println("Deseja adicionar um novo item? Sim ou não?");
-            String opcao = scanner.nextLine();
+            String opcao = App.in.nextLine();
 
             if(opcao.equalsIgnoreCase("Sim")){
                 System.out.println("Descrição do item: ");
-                String descricao = scanner.nextLine();
+                String descricao = App.in.nextLine();
                 System.out.println("Valor unitário: ");
-                double valorUnitario = scanner.nextDouble();
+                double valorUnitario = App.in.nextDouble();
                 System.out.println("Quantidade: ");
-                int quantidade = scanner.nextInt();
-                scanner.nextLine();
+                int quantidade = App.in.nextInt();
+                App.in.nextLine();
 
                 Item item = new Item(descricao, valorUnitario, quantidade);
                 novoPedido.adicionarItem(item);
@@ -50,7 +49,7 @@ public class Registro {
             System.out.println("Pedido não registrado!");
         }else{
             System.out.println("Deseja confirmar o pedido? Sim ou não?");
-            String confirmacao = scanner.nextLine();
+            String confirmacao = App.in.nextLine();
         
             if(confirmacao.equalsIgnoreCase("Sim")){
                 pedidos.add(novoPedido);
@@ -59,14 +58,13 @@ public class Registro {
                 System.out.println("Pedido cancelado");
             }
         }
-        scanner.close();
     }
 
     //[ Fernando ] adicionei o parametro de usuario, oq nao estava no diagrama
     // [TODO] tratar excecoes
     public boolean excluirPedido(Usuario usuario) {
-        Scanner in = new Scanner(System.in);
         int aux = 0;
+        System.out.println("Seus pedidos:");
         for(Pedido p : pedidos) {
             if(p.getUsuario().equals(usuario)) {
                 System.out.println(p.toString());
@@ -75,22 +73,20 @@ public class Registro {
         }
         if(aux == 0) {
             System.out.println("Voce nao tem pedidos");
-            in.close();
             return false;
         }
         System.out.println("Digite o id do pedido a ser excluido:");
-        int id = in.nextInt();
+        int id = App.in.nextInt();
+        App.in.nextLine();
         for(Pedido p : pedidos) {
             if(p.getId() == id && p.getUsuario().equals(usuario)) {
                 pedidos.remove(p);
                 System.out.println("Pedido excluido com sucesso!");
-                in.close();
                 return true;
             }
         }
         System.out.println("Voce nao possui um pedido com este id!");
         System.out.println("Erro ao excluir pedido!");
-        in.close();
         return false;
     }
 
@@ -98,7 +94,6 @@ public class Registro {
         return false;
     } 
     public void listarTodosPedidosEntreDatas() {
-        Scanner in = new Scanner(System.in);
         String dataMinima;
         String dataMaxima;
         while(true) {
@@ -106,11 +101,11 @@ public class Registro {
                 String regex = "^([0-2][0-9]|3[01])/(0[1-9]|1[0-2])/([0-9]{4})$";
                 Pattern pattern = Pattern.compile(regex);
                 System.out.println("\fDigite a data mínima da busca no formato DD/MM/AAAA");
-                dataMinima = in.nextLine();
+                dataMinima = App.in.nextLine();
                 Matcher matcher = pattern.matcher(dataMinima);
                 if (!matcher.matches()) { throw new Exception(); }
                 System.out.println("Digite a data máxima da busca no formato DD/MM/AAAA");
-                dataMaxima = in.nextLine();
+                dataMaxima = App.in.nextLine();
                 matcher = pattern.matcher(dataMaxima);
                 if (!matcher.matches()) { throw new Exception(); }
                 break;
@@ -138,7 +133,6 @@ public class Registro {
             if (ano == anoMax && mes == mesMax && dia > diaMax) { continue; }
             System.out.println(pedido.toString());
         }
-        in.close();
     }
     public void detalhesDoPedidoDeMaiorValor(){
         Pedido aux1 = null;
@@ -151,10 +145,11 @@ public class Registro {
             System.out.println(aux1.toString());
     }
     public void pedidosDeUmFuncionario(){
-        Scanner in = new Scanner(System.in);
+
         int id ;
         System.out.println("Digite o Id do funcionário para consultar um possível pedido");
-        id = in.nextInt();
+        id = App.in.nextInt();
+        App.in.nextLine();
         Pedido aux2 = null;
         for (int i = 0; i<pedidos.size(); i++){
             if (pedidos.get(i).getUsuario().getId() == id){
@@ -165,17 +160,18 @@ public class Registro {
         }
     }
     public void editarStatus(){
-        Scanner in = new Scanner(System.in);
         int id ;
         int opcao ;
         System.out.println("Digite o Id do pedido para aprova-lo ou reprova-lo");
-        id = in.nextInt();
+        id = App.in.nextInt();
+        App.in.nextLine();
         Pedido aux3 = null;
         for (int i = 0; i<pedidos.size(); i++){
             if (pedidos.get(i).getId() == id && pedidos.get(i).getStatus().equals("aberto")){
                 aux3 = pedidos.get(i);
                 System.out.println( "digite 1 para aprova-lo ou digite 2 para reprova-lo");
-                opcao = in.nextInt();
+                opcao = App.in.nextInt();
+                App.in.nextLine();
                 if (opcao == 1){
                     aux3.setStatus("aprovado");
                 }
@@ -221,23 +217,24 @@ public class Registro {
 
     // [TODO] tratar excecoes
     public void verNumeroDePedidoNosUltimos30Dias(){
-        Scanner in = new Scanner(System.in);
         int numPedidos = 0;
         double valorMedio = 0;
 
         System.out.println("Digite a data atual no formato DD/MM/AAAA:");
-        String dataAtual = in.nextLine();
-        int diaA = Integer.parseInt(String.valueOf(dataAtual.charAt(0)+dataAtual.charAt(1)));
-        int mesA = Integer.parseInt(String.valueOf(dataAtual.charAt(3)+dataAtual.charAt(4)));
-        int anoA = Integer.parseInt(String.valueOf(dataAtual.charAt(6)+dataAtual.charAt(7)+dataAtual.charAt(8)+dataAtual.charAt(9)));
+        String dataAtual = App.in.nextLine();
+        String[] dataAtualArray = dataAtual.split("/");
+        int diaA = Integer.parseInt(dataAtualArray[0]);
+        int mesA = Integer.parseInt(dataAtualArray[1]);
+        int anoA = Integer.parseInt(dataAtualArray[2]);
         LocalDate dAtual = LocalDate.of(anoA, mesA, diaA);
         LocalDate InicioIntervalo = dAtual.minusDays(30);
 
         for(Pedido p : pedidos) {
             String dataPedido = p.getDataInicio();
-            int diaP = Integer.parseInt(String.valueOf(dataPedido.charAt(0)+dataPedido.charAt(1)));
-            int mesP = Integer.parseInt(String.valueOf(dataPedido.charAt(3)+dataPedido.charAt(4)));
-            int anoP = Integer.parseInt(String.valueOf(dataPedido.charAt(6)+dataPedido.charAt(7)+dataPedido.charAt(8)+dataPedido.charAt(9)));
+            String[] dataPedidoArray = dataPedido.split("/");
+            int diaP = Integer.parseInt(dataPedidoArray[0]);
+            int mesP = Integer.parseInt(dataPedidoArray[1]);
+            int anoP = Integer.parseInt(dataPedidoArray[2]);
             LocalDate dPedido = LocalDate.of(anoP, mesP, diaP);
             if(dPedido.isAfter(InicioIntervalo) && dPedido.isBefore(dAtual.plusDays(1))) {
                 numPedidos++;
@@ -246,26 +243,26 @@ public class Registro {
         }
         System.out.println("Quantidade de pedidos: " + numPedidos);
         System.out.println("Valor medio: " + valorMedio);
-        in.close();
     }
     
     public void verNumeroPedidosPorCategoria(){
-        Scanner in = new Scanner(System.in);
         double vtAberto = 0, vtAprovado = 0, vtReprovado = 0;
 
         System.out.println("Digite a data atual no formato DD/MM/AAAA:");
-        String dataAtual = in.nextLine();
-        int diaA = Integer.parseInt(String.valueOf(dataAtual.charAt(0)+dataAtual.charAt(1)));
-        int mesA = Integer.parseInt(String.valueOf(dataAtual.charAt(3)+dataAtual.charAt(4)));
-        int anoA = Integer.parseInt(String.valueOf(dataAtual.charAt(6)+dataAtual.charAt(7)+dataAtual.charAt(8)+dataAtual.charAt(9)));
+        String dataAtual = App.in.nextLine();
+        String[] dataAtualArray = dataAtual.split("/");
+        int diaA = Integer.parseInt(dataAtualArray[0]);
+        int mesA = Integer.parseInt(dataAtualArray[1]);
+        int anoA = Integer.parseInt(dataAtualArray[2]);
         LocalDate dAtual = LocalDate.of(anoA, mesA, diaA);
         LocalDate InicioIntervalo = dAtual.minusDays(30);
 
         for(Pedido p : pedidos) {
             String dataPedido = p.getDataInicio();
-            int diaP = Integer.parseInt(String.valueOf(dataPedido.charAt(0)+dataPedido.charAt(1)));
-            int mesP = Integer.parseInt(String.valueOf(dataPedido.charAt(3)+dataPedido.charAt(4)));
-            int anoP = Integer.parseInt(String.valueOf(dataPedido.charAt(6)+dataPedido.charAt(7)+dataPedido.charAt(8)+dataPedido.charAt(9)));
+            String[] dataPedidoArray = dataPedido.split("/");
+            int diaP = Integer.parseInt(dataPedidoArray[0]);
+            int mesP = Integer.parseInt(dataPedidoArray[1]);
+            int anoP = Integer.parseInt(dataPedidoArray[2]);
             LocalDate dPedido = LocalDate.of(anoP, mesP, diaP);
             if(dPedido.isAfter(InicioIntervalo) && dPedido.isBefore(dAtual.plusDays(1))) {
                 if(p.getStatus().equalsIgnoreCase("aberto")) {
@@ -282,14 +279,11 @@ public class Registro {
         System.out.println("aberto: " + vtAberto);
         System.out.println("aprovado: " + vtAprovado);
         System.out.println("reprovado: " + vtReprovado);
-        in.close();
     }
     public void verPedidosPelaDescricao(){
-        Scanner in = new Scanner(System.in);
         System.out.println("Digite a descrição do item que deseja: ");
-        String descricao = in.nextLine();
+        String descricao = App.in.nextLine();
         int aux = 0;
-        in.close();
         for(Pedido p : pedidos) {
             for(Item i : p.getListaItens()) {
                 if(i.getDescricao().equals(descricao)) {
