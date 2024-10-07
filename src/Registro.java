@@ -138,11 +138,13 @@ public class Registro {
         Pedido aux1 = null;
         for (int i = 0; i<pedidos.size(); i++){
           if (pedidos.get(i).getStatus().equals("aberto")){
-                if(pedidos.get(i).getValorTotal() > aux1.getValorTotal())
+                if(aux1 == null)
+                    aux1 = pedidos.get(i);
+                else if(pedidos.get(i).getValorTotal() > aux1.getValorTotal())
                 aux1 = pedidos.get(i);
             } 
         }
-            System.out.println(aux1.toString());
+        if (aux1 != null) System.out.println(aux1.toString());
     }
     public void pedidosDeUmFuncionario(){
 
@@ -191,7 +193,8 @@ public class Registro {
 
     }
     public void verNumeroTotalDePedidos(){
-        int total = 0, aberto = 0, aprovado = 0, reprovado = 0;
+        int aberto = 0, aprovado = 0, reprovado = 0;
+        float total = 0;
         for(Pedido p : pedidos) {
             total++;
             if(p.getStatus().equalsIgnoreCase("aberto")) {
@@ -204,12 +207,14 @@ public class Registro {
                 reprovado++;
             }
         }
-        System.out.format("+-----------+-----+-----+");
-        System.out.format("| categoria | qtd |  %  |");
-        System.out.format("+-----------+-----+-----+");
-        System.out.format("| aberto    | %3d | %3d |", aberto, (total / 100) * aberto);
-        System.out.format("| aprovado  | %3d | %3d |", aprovado, (total / 100) * aprovado);
-        System.out.format("| reprovado | %3d | %3d |", reprovado, (total / 100) * reprovado);
+
+        System.out.println("+-----------+-----+-----+");
+        System.out.println("| categoria | qtd |  %  |");
+        System.out.format("+-----------+-----+-----+\n");
+        System.out.format("| aberto    | %3d | %3d |\n", aberto, (int)((aberto / total) * 100 ));
+        System.out.format("| aprovado  | %3d | %3d |\n", aprovado, (int)((aprovado / total) * 100));
+        System.out.format("| reprovado | %3d | %3d |\n", reprovado, (int)((reprovado / total) * 100));
+        System.out.format("+-----------+-----+-----+\n");
     }
     public void verDetalhesDoPedidoComMaiorValor(){
 
