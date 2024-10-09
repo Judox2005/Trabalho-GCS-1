@@ -17,7 +17,8 @@ public class App {
     public void executar(){
         iniciarDepartamento();
         iniciarUsuario();
-        login();
+        this.usuario = usuarios.get(0);
+        System.out.println("Bem vindo, " + usuario.getNome() + "!");
 
         while (true) {
             if(usuario.getTipo() == 0){
@@ -32,20 +33,26 @@ public class App {
         }
     }
 
-    public void login() {
+    public void alterarUsuarioAtual() {
         
         while(true) {
-            System.out.println("LOGIN DE USUARIO:");
-            System.out.println("Informe seu id: ");
-            int id = in.nextInt();
-            in.nextLine();
+            System.out.println("ALTERAR USUARIO ATUAL:");
+            System.out.println("Informe seu primeiro nome: ");
+            String nome = in.nextLine();
+            System.out.println("Informe as suas iniciais: ");
+            String iniciais = in.nextLine();
+
             for(Usuario u : usuarios) {
-            if(u.getId() == id) {
-                this.usuario = u;
-                return;
+                String[]n = u.getNome().split(" ");
+                boolean ini = (n[0].charAt(0) == iniciais.charAt(0)) && (n[1].charAt(0) == iniciais.charAt(1 ));
+
+                if(ini) {
+                    this.usuario = u;
+                    System.out.println("Bem vindo, " + usuario.getNome() + "!");
+                    return;
+                }
             }
-        }
-        System.out.println("Nao ha usuario com este id, digite novamente!");
+            System.out.println("Nao ha usuario com este id ou nome, digite novamente!");
         }
     }
 
@@ -71,7 +78,7 @@ public class App {
                 registro.excluirPedido(usuario);
                 break;
             case 3:
-                login();
+                alterarUsuarioAtual();
                 break;
             case 4:
                 break;
@@ -110,7 +117,7 @@ public class App {
                 registro.excluirPedido(usuario);
                 break;
             case 3:
-                login();
+                alterarUsuarioAtual();
                 break;
             case 4:
                 System.out.println("Listar todos os pedidos entre datas:");
@@ -160,11 +167,11 @@ public class App {
         departamentos.add(new Departamento("Manutenção",600.0));    
     }   
     private void iniciarUsuario(){
-        usuarios.add(new Usuario(1,"Arthur",1,departamentos.get(0))); //Financeiro
-        usuarios.add(new Usuario(2,"Arthur",0,departamentos.get(1))); //TI
-        usuarios.add(new Usuario(3,"Arthur",0,departamentos.get(2))); //RH
-        usuarios.add(new Usuario(4,"Arthur",0,departamentos.get(3))); //Engenharia
-        usuarios.add(new Usuario(5,"Arthur",0,departamentos.get(4))); //Manutenção
+        usuarios.add(new Usuario(1,"Arthur Faleiro",1,departamentos.get(0))); //Financeiro
+        usuarios.add(new Usuario(2,"Fernando Lau",0,departamentos.get(1))); //TI
+        usuarios.add(new Usuario(3,"Antonio Vicente",0,departamentos.get(2))); //RH
+        usuarios.add(new Usuario(4,"Piedro Nunes",0,departamentos.get(3))); //Engenharia
+        usuarios.add(new Usuario(5,"Enrico Goggia",0,departamentos.get(4))); //Manutenção
     }
     
 }
