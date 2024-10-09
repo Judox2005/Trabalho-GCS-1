@@ -89,9 +89,6 @@ public class Registro {
         return false;
     }
 
-    public boolean editarStatusPeloId(){
-        return false;
-    } 
     public void listarTodosPedidosEntreDatas() {
         String dataMinima;
         String dataMaxima;
@@ -163,22 +160,32 @@ public class Registro {
     public void editarStatus(){
         int id ;
         int opcao ;
-        System.out.println("Digite o Id do pedido para aprova-lo ou reprova-lo");
+        System.out.println("Digite o Id do pedido que deseja alterar o status");
         id = App.in.nextInt();
         App.in.nextLine();
         Pedido aux3 = null;
+        System.out.println( "Digite:\n1 para aprova-lo ou digite \n2 para reprova-lo ou \n3 para marca-lo como entregue");
+        opcao = App.in.nextInt();
+        App.in.nextLine();
         for (int i = 0; i<pedidos.size(); i++){
+            aux3 = pedidos.get(i);
             if (pedidos.get(i).getId() == id && pedidos.get(i).getStatus().equals("aberto")){
-                aux3 = pedidos.get(i);
-                System.out.println( "digite 1 para aprova-lo ou digite 2 para reprova-lo");
-                opcao = App.in.nextInt();
-                App.in.nextLine();
                 if (opcao == 1){
                     aux3.setStatus("aprovado");
+                    System.out.println(aux3.getStatus() + " " + "Status atualizado com sucesso!" );
+                    return ;
                 }
                 else if (opcao == 2){
                     aux3.setStatus("reprovado");
+                    System.out.println(aux3.getStatus() + " " + "Status atualizado com sucesso!" );
+                    return ;
                 }
+            }
+            if(opcao == 3 && aux3.getStatus().equals("aprovado")) {
+                System.out.println("Digite a data atual no formato DD/MM/AAAA:");
+                String data = App.in.nextLine();
+                aux3.setDataConclusao(data);
+                aux3.setStatus("concluido");
                 System.out.println(aux3.getStatus() + " " + "Status atualizado com sucesso!" );
                 return ;
             }

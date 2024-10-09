@@ -44,17 +44,19 @@ public class App {
 
             for(Usuario u : usuarios) {
                 String[]n = u.getNome().split(" ");
-                boolean ini = (n[0].charAt(0) == iniciais.charAt(0)) && (n[1].charAt(0) == iniciais.charAt(1 ));
-
-                if(ini) {
+                
+                if(n[0].equalsIgnoreCase(nome)
+                && (n[0].charAt(0) == iniciais.charAt(0)) && (n[1].charAt(0) == iniciais.charAt(1 ))) {
                     this.usuario = u;
                     System.out.println("Bem vindo, " + usuario.getNome() + "!");
                     return;
                 }
+
             }
             System.out.println("Nao ha usuario com este id ou nome, digite novamente!");
         }
     }
+    
 
     public void menu(){
 
@@ -81,12 +83,15 @@ public class App {
                 alterarUsuarioAtual();
                 break;
             case 4:
-                break;
+                return;
         
             default:
                 System.out.println("Opcao nao encontrada, digite novamente!");
                 break;
         }
+        System.out.println("Pressione ENTER para prosseguir");
+        in.nextLine();
+        System.out.print("\n");
 
     }
     public void menuAdm(){
@@ -152,12 +157,15 @@ public class App {
                 registro.detalhesDoPedidoDeMaiorValor();
                 break;
             case 12:
-                break;
+                return;
         
             default:
                 System.out.println("Opcao nao encontrada, digite novamente!");
                 break;
         }
+        System.out.println("Pressione ENTER para prosseguir");
+        in.nextLine();
+        System.out.print("\n");
     }
     private void iniciarDepartamento(){
         departamentos.add(new Departamento("Financeiro",1000.0));
