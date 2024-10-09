@@ -194,7 +194,7 @@ public class Registro {
     }
 
     public void verNumeroTotalDePedidos(){
-        int aberto = 0, aprovado = 0, reprovado = 0;
+        int aberto = 0, aprovado = 0, reprovado = 0, concluido = 0;
         float total = 0;
         for(Pedido p : pedidos) {
             total++;
@@ -207,6 +207,9 @@ public class Registro {
             if(p.getStatus().equalsIgnoreCase("reprovado")) {
                 reprovado++;
             }
+            if(p.getStatus().equalsIgnoreCase("concluido")) {
+                concluido++;
+            }
         }
 
         System.out.println("+-----------+-----+-----+");
@@ -215,6 +218,7 @@ public class Registro {
         System.out.format("| aberto    | %3d | %3d |\n", aberto, (int)((aberto / total) * 100 ));
         System.out.format("| aprovado  | %3d | %3d |\n", aprovado, (int)((aprovado / total) * 100));
         System.out.format("| reprovado | %3d | %3d |\n", reprovado, (int)((reprovado / total) * 100));
+        System.out.format("| concluido | %3d | %3d |\n", concluido, (int)((concluido / total) * 100));
         System.out.format("+-----------+-----+-----+\n");
     }
 
