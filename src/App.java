@@ -55,7 +55,7 @@ public class App {
         System.out.println("Selecione uma opcao:");
         System.out.println("1) Registrar novo pedido");
         System.out.println("2) Excluir pedido");
-        System.out.println("3) Alterar conta");
+        System.out.println("3) Alterar usuario atual");
         System.out.println("4) Sair");
 
         this.opc = in.nextInt();
@@ -87,7 +87,7 @@ public class App {
         System.out.println("Selecione uma opcao:");
         System.out.println("1) Registrar novo pedido");
         System.out.println("2) Excluir pedido");
-        System.out.println("3) Alterar conta");
+        System.out.println("3) Alterar usuario atual");
         System.out.println("4) Listar todos os pedidos entre datas");
         System.out.println("5) Listar todos os pedidos de um certo funcionario");
         System.out.println("6) Listar todos os pedidos pela descricao do item");
@@ -122,7 +122,7 @@ public class App {
                 break;
             case 6:
                 System.out.println("Listar todos os pedidos pela descricao do item:");
-                registro.buscaPedidosPeloItem();
+                registro.verPedidosPelaDescricao();
                 break;
             case 7:
                 System.out.println("Editar status:");

@@ -60,7 +60,6 @@ public class Registro {
         }
     }
 
-    //[ Fernando ] adicionei o parametro de usuario, oq nao estava no diagrama
     // [TODO] tratar excecoes
     public boolean excluirPedido(Usuario usuario) {
         int aux = 0;
@@ -186,12 +185,7 @@ public class Registro {
         }
         System.out.println("erro, retornando ao menu...");
     }
-    public void buscaPedidosPeloItem(){
-    
-    }
-    public void verDetalhesDoPedido(){
 
-    }
     public void verNumeroTotalDePedidos(){
         int aberto = 0, aprovado = 0, reprovado = 0;
         float total = 0;
@@ -215,9 +209,6 @@ public class Registro {
         System.out.format("| aprovado  | %3d | %3d |\n", aprovado, (int)((aprovado / total) * 100));
         System.out.format("| reprovado | %3d | %3d |\n", reprovado, (int)((reprovado / total) * 100));
         System.out.format("+-----------+-----+-----+\n");
-    }
-    public void verDetalhesDoPedidoComMaiorValor(){
-
     }
 
     // [TODO] tratar excecoes
