@@ -17,7 +17,7 @@ public class App {
     public void executar(){
         iniciarDepartamento();
         iniciarUsuario();
-        this.usuario = usuarios.get(1);
+        this.usuario = usuarios.get(0);
         System.out.println("Bem vindo, " + usuario.getNome() + "!");
 
         while (true) {
@@ -175,12 +175,24 @@ public class App {
         departamentos.add(new Departamento("Engenharia",1000.0));
         departamentos.add(new Departamento("Manutenção",600.0));    
     }   
-    private void iniciarUsuario(){
-        usuarios.add(new Usuario(1,"Arthur Faleiro",1,departamentos.get(0))); //Financeiro
+    private void iniciarUsuario(){  //funcionario adm=1, funcionario normal=0
+        usuarios.add(new Usuario(1,"Arthur Faleiro",0,departamentos.get(0))); //Financeiro
         usuarios.add(new Usuario(2,"Fernando Lau",0,departamentos.get(1))); //TI
-        usuarios.add(new Usuario(3,"Antonio Vicente",1,departamentos.get(2))); //RH
+        usuarios.add(new Usuario(3,"Antonio Vicente",0,departamentos.get(2))); //RH
         usuarios.add(new Usuario(4,"Piedro Nunes",0,departamentos.get(3))); //Engenharia
-        usuarios.add(new Usuario(5,"Enrico Goggia",1,departamentos.get(4))); //Manutenção
+        usuarios.add(new Usuario(5,"Enrico Goggia",0,departamentos.get(4))); //Manutenção
+
+        usuarios.add(new Usuario(6,"Lucas Almeida",1,departamentos.get(0))); //Financeiro
+        usuarios.add(new Usuario(7,"Sofia Costa",1,departamentos.get(1))); //TI
+        usuarios.add(new Usuario(8,"Rafael Oliveira",1,departamentos.get(2))); //RH
+        usuarios.add(new Usuario(9,"Mario Silva",1,departamentos.get(3))); //Engenharia
+        usuarios.add(new Usuario(10,"Thiago Santos",1,departamentos.get(4))); //Manutenção
+
+        usuarios.add(new Usuario(11,"Julia Ferreira",1,departamentos.get(0))); //Financeiro
+        usuarios.add(new Usuario(12,"Felipe Pereira",1,departamentos.get(1))); //TI
+        usuarios.add(new Usuario(13,"Ana Lopes",1,departamentos.get(2))); //RH
+        usuarios.add(new Usuario(14,"Bruno Martins",1,departamentos.get(3))); //Engenharia
+        usuarios.add(new Usuario(15,"Camila Rocha",1,departamentos.get(4))); //Manutenção
     }
     
 }
