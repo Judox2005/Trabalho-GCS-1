@@ -17,7 +17,7 @@ public class App {
     public void executar(){
         iniciarDepartamento();
         iniciarUsuario();
-        this.usuario = usuarios.get(0);
+        this.usuario = usuarios.get(1);
         System.out.println("Bem vindo, " + usuario.getNome() + "!");
 
         while (true) {
@@ -39,7 +39,7 @@ public class App {
             System.out.println("ALTERAR USUARIO ATUAL:");
             System.out.println("Informe seu primeiro nome: ");
             String nome = in.nextLine();
-            System.out.println("Informe as suas iniciais: ");
+            System.out.println("Informe as suas iniciais em maiúsculo: ");
             String iniciais = in.nextLine();
 
             for(Usuario u : usuarios) {
@@ -177,9 +177,9 @@ public class App {
     private void iniciarUsuario(){
         usuarios.add(new Usuario(1,"Arthur Faleiro",1,departamentos.get(0))); //Financeiro
         usuarios.add(new Usuario(2,"Fernando Lau",0,departamentos.get(1))); //TI
-        usuarios.add(new Usuario(3,"Antonio Vicente",0,departamentos.get(2))); //RH
+        usuarios.add(new Usuario(3,"Antonio Vicente",1,departamentos.get(2))); //RH
         usuarios.add(new Usuario(4,"Piedro Nunes",0,departamentos.get(3))); //Engenharia
-        usuarios.add(new Usuario(5,"Enrico Goggia",0,departamentos.get(4))); //Manutenção
+        usuarios.add(new Usuario(5,"Enrico Goggia",1,departamentos.get(4))); //Manutenção
     }
     
 }
