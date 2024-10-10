@@ -163,6 +163,7 @@ public class App {
                 System.out.println("Opcao nao encontrada, digite novamente!");
                 break;
         }
+        System.out.print("\n");
         System.out.println("Pressione ENTER para prosseguir");
         in.nextLine();
         System.out.print("\n");
