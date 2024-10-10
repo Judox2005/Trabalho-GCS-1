@@ -1,17 +1,33 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.regex.*;
 import java.time.LocalDate;
 public class Registro {
     private ArrayList<Pedido> pedidos;
     public Registro(){
-        this.pedidos = new ArrayList<>();
 
-        //[ Piedro ] adicionei alguns pedidos para testar os métodos, se quiser pode remover
-        pedidos.add(new Pedido("18/10/2003", new Usuario(1,"João", 1, new Departamento("TI", 100))));
-        pedidos.add(new Pedido("01/01/2021", new Usuario(1,"maira", 1, new Departamento("TI", 100))));
-        pedidos.add(new Pedido("05/05/2021", new Usuario(1,"thiago", 1, new Departamento( "TI", 100))));
-        pedidos.add(new Pedido("12/04/2024", new Usuario(1,"larissa", 1, new Departamento("TI", 100))));
+        this.pedidos = new ArrayList<>();
+        Item item1 = new Item("martelo", 50.0, 1);
+        Item item2 = new Item("grampeador", 10.0, 3);
+        Item item3 = new Item("impressora", 300.0, 1);
+        Item item4 = new Item("chave philips", 20.0, 2);
+
+        Pedido pedido1 = new Pedido("28/09/2024", new Usuario(1,"João", 1, new Departamento("TI", 100)));
+        pedido1.adicionarItem(item2);
+
+        Pedido pedido2 = new Pedido("09/10/2024", new Usuario(1,"maira", 1, new Departamento("Engenharia", 100)));
+        pedido2.adicionarItem(item2);
+        pedido2.adicionarItem(item4);
+        Pedido pedido3 = new Pedido("03/10/2024", new Usuario(1,"thiago", 1, new Departamento( "Manutenção", 100)));
+        pedido3.adicionarItem(item1);
+        pedido3.adicionarItem(item4);
+
+        Pedido pedido4 = new Pedido("01/10/2024", new Usuario(1,"larissa", 1, new Departamento("Financeiro", 100)));
+        pedido4.adicionarItem(item3);
+
+        pedidos.add(pedido1);
+        pedidos.add(pedido2);
+        pedidos.add(pedido3);
+        pedidos.add(pedido4);
     }
 
     public void registraNovoPedido(Usuario usuario) {
