@@ -17,7 +17,7 @@ public class Registro {
     public void registraNovoPedido(Usuario usuario) {
         System.out.println("Novo pedido para " + usuario.getNome());
         System.out.println("Departamento: " + usuario.getDepartamento().getNome());
-        System.out.println("Limite de cada Departamento: " + usuario.getDepartamento().getvalorMaximoPedido());
+        System.out.println("Limite do Departamento: " + usuario.getDepartamento().getvalorMaximoPedido());
         System.out.println("Informe a data atual no formato DD/MM/AAAA: ");
         String dataInicio = App.in.nextLine();
         Pedido novoPedido = new Pedido(dataInicio, usuario);
@@ -164,7 +164,7 @@ public class Registro {
         id = App.in.nextInt();
         App.in.nextLine();
         Pedido aux3 = null;
-        System.out.println( "Digite:\n1 para aprova-lo ou digite \n2 para reprova-lo ou \n3 para marca-lo como entregue");
+        System.out.println( "Digite:\n1 para aprova-lo ou digite(somente para pedidos abertos) \n2 para reprova-lo(somente para pedidos abertos) \n3 para marca-lo como entregue(somente para pedidos aprovados)");
         opcao = App.in.nextInt();
         App.in.nextLine();
         for (int i = 0; i<pedidos.size(); i++){
@@ -253,7 +253,7 @@ public class Registro {
     }
     
     public void verNumeroPedidosPorCategoria(){
-        double vtAberto = 0, vtAprovado = 0, vtReprovado = 0;
+        double vtAberto = 0, vtAprovado = 0, vtReprovado = 0, vtConcluido = 0;
 
         System.out.println("Digite a data atual no formato DD/MM/AAAA:");
         String dataAtual = App.in.nextLine();
@@ -281,11 +281,15 @@ public class Registro {
                 if(p.getStatus().equalsIgnoreCase("reprovado")) {
                     vtReprovado += p.getValorTotal();
                 }
+                if(p.getStatus().equalsIgnoreCase("concluido")) {
+                    vtConcluido += p.getValorTotal();
+                }
             }
         }
         System.out.println("aberto: " + vtAberto);
         System.out.println("aprovado: " + vtAprovado);
         System.out.println("reprovado: " + vtReprovado);
+        System.out.println("concluido: " + vtConcluido);
     }
     public void verPedidosPelaDescricao(){
         System.out.println("Digite a descrição do item que deseja: ");
